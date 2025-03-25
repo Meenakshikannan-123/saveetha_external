@@ -1,0 +1,33 @@
+/* navbar styles */
+.navbar-collapse{
+    flex-grow: 0 !important;
+}
+
+.nav-link{
+    color: #000 !important;
+}
+
+
+.navbar-brand img{
+    width: 50px;
+}
+.navbar-text{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000 !important;
+}
+
+.nav-item a{
+    font-size: 15px;
+    font-weight: 500;
+}
+.nav-item:hover{
+    /* background-color: #0052d1; */
+    border-bottom: 2px solid black;
+
+}
+
+.nav-item:hover a{
+    color: #211C84 !important;
+}
