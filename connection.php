@@ -14,6 +14,6 @@ die("connect error:". $conn->connect_error);
 // else{
 //     echo "successfully connected";
 // }
-
+// echo $dbname; 
 
 ?>

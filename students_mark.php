@@ -27,7 +27,7 @@
             <h4>Current Date and Time: <span id="currentDateTime"></span></h4>
         </div>
 
-        <table class="table table-bordered" style="margin-left: -55px;" id="examineeTable">
+        <table class="table table-bordered" style="margin-left: -107px;" id="examineeTable">
             <thead>
                 <tr>
                     <th>S.No</th>
@@ -80,30 +80,29 @@
     // Function to fetch examinee details from the backend
     function fetchExamineeDetails(startTime = "", endTime = "") {
         $.ajax({
-            url: "api/student_markbk.php", // Call to your backend API
-            type: "GET",
-            data: {
-                course_id: "<?= $course_id; ?>",
-                start_time: startTime,
-                end_time: endTime
-            },
-            dataType: "json",
-            beforeSend: function() {
-                $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center">Loading...</td></tr>');
-            },
-            success: function(response) {
-                console.log(response); // Log the response for debugging
-                if (response.status === "success") {
-                    allStudents = response.data;
-                    showCurrentExaminees(); // Update table based on current time slot
-                } else {
-                    $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center text-danger">' + response.message + '</td></tr>');
-                }
-            },
-            error: function() {
-                $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center text-danger">Error fetching data</td></tr>');
-            }
-        });
+    url: "api/student_markbk.php", // Call to your backend API
+    type: "GET",
+    data: {
+        course_id: "<?= $course_id; ?>"  // Ensure $course_id is correctly passed to this
+    },
+    dataType: "json",
+    beforeSend: function() {
+        $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center">Loading...</td></tr>');
+    },
+    success: function(response) {
+        console.log(response); // Log the response for debugging
+        if (response.status === "success") {
+            allStudents = response.data;
+            showCurrentExaminees(); // Update table based on current time slot
+        } else {
+            $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center text-danger">' + response.message + '</td></tr>');
+        }
+    },
+    error: function() {
+        $("#examineeTable tbody").html('<tr><td colspan="16" class="text-center text-danger">Error fetching data</td></tr>');
+    }
+});
+
     }
 
     // Function to render the examinee table dynamically

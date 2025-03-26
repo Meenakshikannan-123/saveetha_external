@@ -18,6 +18,10 @@ if (empty($course_id)) {
 $current_time = date('Y-m-d H:i:s');  // This will give you the current time in 'Y-m-d H:i:s' format
 $current_date = date('Y-m-d'); // This will give you the current date in 'Y-m-d' format
 
+// Log current time and date for debugging
+error_log("Current Time: " . $current_time);
+error_log("Current Date: " . $current_date);
+
 // Fetch examinee details for the given course_id, filtering by current date and time, and limiting to 10 students per hour
 $sql = "
     SELECT 
@@ -63,6 +67,9 @@ $sql = "
     AND 
         ? BETWEEN s.start_time AND s.end_time -- Ensure the current time is between start_time and end_time
     LIMIT 10";  // Limit to 10 students per hour
+
+// Log the final SQL query for debugging
+error_log("SQL Query: " . $sql);
 
 // Prepare and execute the query
 $stmt = $conn->prepare($sql);
