@@ -33,11 +33,11 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Check if the email exists in the database
+// ✅ Check if the email exists in the database
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     
-    // Check if the provided password matches the hashed password
+    // ✅ Check if the provided password matches the hashed password
     if (password_verify($password, $row['password'])) {
         // Password is correct, store the email in the session
         $_SESSION['user_email'] = $email;
@@ -50,34 +50,15 @@ if ($result->num_rows > 0) {
             ]
         ]);
     } else {
-        // Password doesn't match
+        // ❌ Password doesn't match
         echo json_encode(["status" => "error", "message" => "Invalid email or password"]);
     }
 } else {
-    // Email does not exist, so insert the user login record
-    $password_hashed = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-
-    $sql = "INSERT INTO examineer_login (email, password) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $email, $password_hashed);
-
-    if ($stmt->execute()) {
-        // Store the email in the session after successful registration
-        $_SESSION['user_email'] = $email;
-
-        echo json_encode([
-            "status" => "success",
-            "message" => "User login recorded successfully",
-            "user" => [
-                "email" => $email
-            ]
-        ]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Failed to insert login record"]);
-    }
+    // ❌ Email does not exist
+    echo json_encode(["status" => "error", "message" => "Email not found"]);
 }
 
-// Close connections
+// ✅ Close connections
 $stmt->close();
 $conn->close();
 ?>

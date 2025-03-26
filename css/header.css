@@ -18,16 +18,49 @@
     color: #000 !important;
 }
 
-.nav-item a{
-    font-size: 15px;
-    font-weight: 500;
-}
-.nav-item:hover{
-    /* background-color: #0052d1; */
-    border-bottom: 2px solid black;
+/* Default styles are already fine for large screens */
 
+@media (max-width: 992px) {
+    /* Medium devices (Tablets) */
+    .navbar-text {
+        font-size: 20px;
+    }
+
+    .nav-item a {
+        font-size: 14px;
+    }
+
+    .navbar-brand img {
+        width: 40px;
+    }
 }
 
-.nav-item:hover a{
-    color: #211C84 !important;
+@media (max-width: 768px) {
+    /* Small devices (Mobile) */
+    .navbar-collapse {
+        background-color: #fff; /* Optional: Add background for mobile menu */
+        border-top: 1px solid #ddd;
+    }
+
+    .nav-link {
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    .navbar-text {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .navbar-brand img {
+        width: 35px;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nav-item:hover a {
+        color: #0056b3 !important;
+    }
 }
